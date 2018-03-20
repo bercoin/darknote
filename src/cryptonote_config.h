@@ -26,16 +26,16 @@ namespace parameters {
 const uint64_t CRYPTONOTE_MAX_BLOCK_NUMBER                   = 500000000;
 const size_t   CRYPTONOTE_MAX_BLOCK_BLOB_SIZE                = 500000000;
 const size_t   CRYPTONOTE_MAX_TX_SIZE                        = 1000000000;
-const uint64_t CRYPTONOTE_PUBLIC_ADDRESS_BASE58_PREFIX       = 0xDB; // addresses start with "0xDB"
+const uint64_t CRYPTONOTE_PUBLIC_ADDRESS_BASE58_PREFIX       = 0x30abb4e; // addresses start with "0xDB"
 const size_t   CRYPTONOTE_MINED_MONEY_UNLOCK_WINDOW          = 6;
 const uint64_t CRYPTONOTE_BLOCK_FUTURE_TIME_LIMIT            = 60 * 60 * 2;
 
 const size_t   BLOCKCHAIN_TIMESTAMP_CHECK_WINDOW             = 30;
 
 // MONEY_SUPPLY - total number coins to be generated
-const uint64_t MONEY_SUPPLY                                  = UINT64_C(858986905600000000);
+const uint64_t MONEY_SUPPLY                                  = UINT64_C(25000000000000000);
 
-const char     GENESIS_COINBASE_HEX[]                        = "010601ff0001808088a5a9a307029b2e4c0281c0b02e7c53291a94d1d0cbff8883f8024f5142ee494ffbbd088071210138dc57b313e2560fa75f5d7c9a6398800855220aefb3603bc70826adc83e0cc1";
+const char     GENESIS_COINBASE_HEX[]                        = "";
 const uint32_t GENESIS_NONCE                                 = 420;
 
 const size_t   CRYPTONOTE_REWARD_BLOCKS_WINDOW               = 100;
@@ -73,11 +73,11 @@ const char     P2P_NET_DATA_FILENAME[]                       = "p2pstate.bin";
 const char     MINER_CONFIG_FILE_NAME[]                      = "miner_conf.json";
 } // parameters
 
-const uint64_t START_BLOCK_REWARD                            = (UINT64_C(320000) * parameters::COIN);
+const uint64_t START_BLOCK_REWARD                            = (UINT64_C(125000000) * parameters::COIN);
 const uint64_t MIN_BLOCK_REWARD                              = (UINT64_C(150) * parameters::COIN);
 const uint64_t REWARD_HALVING_INTERVAL                       = (UINT64_C(11000));
 
-const char     CRYPTONOTE_NAME[]                             = "ducknote";
+const char     CRYPTONOTE_NAME[]                             = "bercoin";
 
 const uint8_t  CURRENT_TRANSACTION_VERSION                   =  1;
 const uint8_t  BLOCK_MAJOR_VERSION_1                         =  1;
@@ -90,8 +90,8 @@ const size_t   BLOCKS_IDS_SYNCHRONIZING_DEFAULT_COUNT        =  10000;  //by def
 const size_t   BLOCKS_SYNCHRONIZING_DEFAULT_COUNT            =  200;    //by default, blocks count in blocks downloading
 const size_t   COMMAND_RPC_GET_BLOCKS_FAST_MAX_COUNT         =  1000;
 
-const int      P2P_DEFAULT_PORT                              =  42080;
-const int      RPC_DEFAULT_PORT                              =  42081;
+const int      P2P_DEFAULT_PORT                              =  25845;
+const int      RPC_DEFAULT_PORT                              =  25846;
 
 const size_t   P2P_LOCAL_WHITE_PEERLIST_LIMIT                =  1000;
 const size_t   P2P_LOCAL_GRAY_PEERLIST_LIMIT                 =  5000;
@@ -107,12 +107,16 @@ const size_t   P2P_DEFAULT_HANDSHAKE_INVOKE_TIMEOUT          = 5000;          //
 const char     P2P_STAT_TRUSTED_PUB_KEY[]                    = "85ae8734f90bc1ee295ceb0ec05a49852d4dbbc9d1c27a619b5f4bdf26a0196e";
 const size_t   P2P_DEFAULT_WHITELIST_CONNECTIONS_PERCENT     = 70;
 
-const boost::uuids::uuid NETWORK_ID                          = { { 0x4E, 0x6F, 0x73, 0x63, 0x65, 0x20, 0x74, 0x65, 0x20, 0x69, 0x70, 0x73, 0x75, 0x6D, 0x20, 0x20} };
+const boost::uuids::uuid NETWORK_ID                          = { { 0x27, 0x04, 0x86, 0x20, 0x03, 0x20, 0x17, 0x65, 0x20, 0x69, 0x70, 0x73, 0x75, 0x6D, 0x20, 0x20} };
 
 const unsigned THREAD_STACK_SIZE                             = 5 * 1024 * 1024;
 
 const char* const SEED_NODES[] = {
-  "seed.ducknote.org:42080"
+  "34.242.219.207:25845",
+  "172.21.20.105:25845",
+  "34.245.212.75:25845",
+  "172.31.20.44:25845",
+
 };
 
 struct CheckpointData {
@@ -121,19 +125,8 @@ struct CheckpointData {
 };
 
 const CheckpointData CHECKPOINTS[] = {
-    { 1100, "990a83b3e77ba5def86311da34793e09fa3b0a2875571bd59449173fddf4e129" },
-    { 4200, "76af92fc41eadf9c99df91efc08011d0fce6f3f55b131da2449c187f432f91f7" },
-    { 11000, "970c15459e4d484166c36e303fcf35886e14633b40b1fe4e3f250eb03eaca1f8" },
-    { 22000, "ae9ab36c4ff2cf215d49ffa4358d108dd777b8897c2d873a064dc103fea2b5ab" },
-    { 33000, "3fac95a900e65391d693e2cb331a26c757595baac133b9fa24936dd50fc7465f" },
-    { 44000, "071a97648427ad25ec206ae7101534c9b011376f05dee04780b5edb22f9a919e" },
-    { 47000, "a2fda9ea94260ed7177aec5b74802606bc7800d4a1713f761ac71a0883b4b480" },
-    { 55000, "57f48bc9b2dddace94bddc8858cf1cdf5e68cc0db763d7ebcab71b388755e0ce" },
-    { 66000, "90a2bc9e75503d386d41c48e698d474c337291f8c4417d63e90a8b5727f06320" },
-    { 80550, "169e6b813b8ee072735bf7f7dc45b9b712b89a1317d1a4e672f6bba785a564fc" },
-    { 99000, "2a83ce4fbd12ccb2eb60869d11d6b4212e8a810ab33408a2feaa3066d2853d9f" },
-    { 122000, "926e915d84af28a8908809ae94f75bdea50d99d2d1a67fd5598bb91ccdf62c83" },
-    { 128600, "4b67fd3bc0422f8fee358225df849bec01945b298257c6a09b74c905a5b896cb" }
+    //{ 1100, "990a83b3e77ba5def86311da34793e09fa3b0a2875571bd59449173fddf4e129" },
+
 };
 
 } // cryptonote
